@@ -406,6 +406,7 @@ class RoundResultModel(RoundResultDto):
         roundCeremony (Optional[Ceremony]): The ceremony associated with the round.
         winningTeam (TeamModel): The winning team of the round.
         bombPlanter (Optional[PlayerModel]): The player who planted the bomb.
+        isBombPlantAfterRoundEnd (Optional[bool]): Whether the bomb was planted after the round ended.
         bombDefuser (Optional[PlayerModel]): The player who defused the bomb.
         plantPlayerLocations (Optional[Dict[str, PlayerLocationsDto]]): The locations of players who planted the bomb.
         defusePlayerLocations (Optional[Dict[str, PlayerLocationsDto]]): The locations of players who defused the bomb.
@@ -1998,6 +1999,8 @@ def from_dto(cls, dto: PlayerRoundStatsDto, player: PlayerModel, kills: List[Kil
 <dd>The winning team of the round.</dd>
 <dt><strong><code>bombPlanter</code></strong> :&ensp;<code>Optional[<a title="valolyticspy.models.match.PlayerModel" href="#valolyticspy.models.match.PlayerModel">PlayerModel</a>]</code></dt>
 <dd>The player who planted the bomb.</dd>
+<dt><strong><code>isBombPlantAfterRoundEnd</code></strong> :&ensp;<code>Optional[bool]</code></dt>
+<dd>Whether the bomb was planted after the round ended.</dd>
 <dt><strong><code>bombDefuser</code></strong> :&ensp;<code>Optional[<a title="valolyticspy.models.match.PlayerModel" href="#valolyticspy.models.match.PlayerModel">PlayerModel</a>]</code></dt>
 <dd>The player who defused the bomb.</dd>
 <dt><strong><code>plantPlayerLocations</code></strong> :&ensp;<code>Optional[Dict[str, PlayerLocationsDto]]</code></dt>
@@ -2025,6 +2028,7 @@ validated to form a valid model.</p>
         roundCeremony (Optional[Ceremony]): The ceremony associated with the round.
         winningTeam (TeamModel): The winning team of the round.
         bombPlanter (Optional[PlayerModel]): The player who planted the bomb.
+        isBombPlantAfterRoundEnd (Optional[bool]): Whether the bomb was planted after the round ended.
         bombDefuser (Optional[PlayerModel]): The player who defused the bomb.
         plantPlayerLocations (Optional[Dict[str, PlayerLocationsDto]]): The locations of players who planted the bomb.
         defusePlayerLocations (Optional[Dict[str, PlayerLocationsDto]]): The locations of players who defused the bomb.
