@@ -416,6 +416,7 @@ class RoundResultModel(RoundResultDto):
     roundCeremony: Optional[Ceremony] = None
     winningTeam: TeamModel
     bombPlanter: Optional[PlayerModel] = None
+    isBombPlantAfterRoundEnd: Optional[bool] = None
     bombDefuser: Optional[PlayerModel] = None
     plantPlayerLocations: Optional[Dict[str, PlayerLocationsDto]] = None
     defusePlayerLocations: Optional[Dict[str, PlayerLocationsDto]] = None
@@ -446,11 +447,18 @@ class RoundResultModel(RoundResultDto):
         dumped_model.pop(&#34;plantPlayerLocations&#34;)
         dumped_model.pop(&#34;defusePlayerLocations&#34;)
         dumped_model.pop(&#34;playerStats&#34;)
+
+        match dto.roundResult:
+            case &#34;Eliminated&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; kills[-1].timeSinceRoundStartMillis else False
+            case &#34;Round timer expired&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; 100*1000 else False
+            case _: isBombPlantAfterRoundEnd = None
+
         return cls(
             **dumped_model,
             roundCeremony=get_ceremony_from_roundCeremony(dto.roundCeremony),
             winningTeam=winningTeam,
             bombPlanter=bombPlanter,
+            isBombPlantAfterRoundEnd=isBombPlantAfterRoundEnd,
             bombDefuser=bombDefuser,
             plantPlayerLocations={player_location.puuid: player_location for player_location in dto.plantPlayerLocations} if dto.plantPlayerLocations != None else None,
             defusePlayerLocations={player_location.puuid: player_location for player_location in dto.defusePlayerLocations} if dto.defusePlayerLocations != None else None,
@@ -2027,6 +2035,7 @@ validated to form a valid model.</p>
     roundCeremony: Optional[Ceremony] = None
     winningTeam: TeamModel
     bombPlanter: Optional[PlayerModel] = None
+    isBombPlantAfterRoundEnd: Optional[bool] = None
     bombDefuser: Optional[PlayerModel] = None
     plantPlayerLocations: Optional[Dict[str, PlayerLocationsDto]] = None
     defusePlayerLocations: Optional[Dict[str, PlayerLocationsDto]] = None
@@ -2057,11 +2066,18 @@ validated to form a valid model.</p>
         dumped_model.pop(&#34;plantPlayerLocations&#34;)
         dumped_model.pop(&#34;defusePlayerLocations&#34;)
         dumped_model.pop(&#34;playerStats&#34;)
+
+        match dto.roundResult:
+            case &#34;Eliminated&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; kills[-1].timeSinceRoundStartMillis else False
+            case &#34;Round timer expired&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; 100*1000 else False
+            case _: isBombPlantAfterRoundEnd = None
+
         return cls(
             **dumped_model,
             roundCeremony=get_ceremony_from_roundCeremony(dto.roundCeremony),
             winningTeam=winningTeam,
             bombPlanter=bombPlanter,
+            isBombPlantAfterRoundEnd=isBombPlantAfterRoundEnd,
             bombDefuser=bombDefuser,
             plantPlayerLocations={player_location.puuid: player_location for player_location in dto.plantPlayerLocations} if dto.plantPlayerLocations != None else None,
             defusePlayerLocations={player_location.puuid: player_location for player_location in dto.defusePlayerLocations} if dto.defusePlayerLocations != None else None,
@@ -2085,6 +2101,10 @@ validated to form a valid model.</p>
 <div class="desc"></div>
 </dd>
 <dt id="valolyticspy.models.match.RoundResultModel.defusePlayerLocations"><code class="name">var <span class="ident">defusePlayerLocations</span> : Optional[Dict[str, <a title="valolyticspy.dtos.riot.match.PlayerLocationsDto" href="../dtos/riot/match.html#valolyticspy.dtos.riot.match.PlayerLocationsDto">PlayerLocationsDto</a>]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valolyticspy.models.match.RoundResultModel.isBombPlantAfterRoundEnd"><code class="name">var <span class="ident">isBombPlantAfterRoundEnd</span> : Optional[bool]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -2176,11 +2196,18 @@ def from_dto(cls, dto: RoundResultDto, winningTeam: TeamModel, bombPlanter: Play
     dumped_model.pop(&#34;plantPlayerLocations&#34;)
     dumped_model.pop(&#34;defusePlayerLocations&#34;)
     dumped_model.pop(&#34;playerStats&#34;)
+
+    match dto.roundResult:
+        case &#34;Eliminated&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; kills[-1].timeSinceRoundStartMillis else False
+        case &#34;Round timer expired&#34;: isBombPlantAfterRoundEnd = True if dto.plantRoundTime &gt; 100*1000 else False
+        case _: isBombPlantAfterRoundEnd = None
+
     return cls(
         **dumped_model,
         roundCeremony=get_ceremony_from_roundCeremony(dto.roundCeremony),
         winningTeam=winningTeam,
         bombPlanter=bombPlanter,
+        isBombPlantAfterRoundEnd=isBombPlantAfterRoundEnd,
         bombDefuser=bombDefuser,
         plantPlayerLocations={player_location.puuid: player_location for player_location in dto.plantPlayerLocations} if dto.plantPlayerLocations != None else None,
         defusePlayerLocations={player_location.puuid: player_location for player_location in dto.defusePlayerLocations} if dto.defusePlayerLocations != None else None,
@@ -2560,6 +2587,7 @@ def from_dto(cls, dto:TeamDto) -&gt; &#34;TeamModel&#34;:
 <li><code><a title="valolyticspy.models.match.RoundResultModel.bombPlanter" href="#valolyticspy.models.match.RoundResultModel.bombPlanter">bombPlanter</a></code></li>
 <li><code><a title="valolyticspy.models.match.RoundResultModel.defusePlayerLocations" href="#valolyticspy.models.match.RoundResultModel.defusePlayerLocations">defusePlayerLocations</a></code></li>
 <li><code><a title="valolyticspy.models.match.RoundResultModel.from_dto" href="#valolyticspy.models.match.RoundResultModel.from_dto">from_dto</a></code></li>
+<li><code><a title="valolyticspy.models.match.RoundResultModel.isBombPlantAfterRoundEnd" href="#valolyticspy.models.match.RoundResultModel.isBombPlantAfterRoundEnd">isBombPlantAfterRoundEnd</a></code></li>
 <li><code><a title="valolyticspy.models.match.RoundResultModel.kills" href="#valolyticspy.models.match.RoundResultModel.kills">kills</a></code></li>
 <li><code><a title="valolyticspy.models.match.RoundResultModel.model_computed_fields" href="#valolyticspy.models.match.RoundResultModel.model_computed_fields">model_computed_fields</a></code></li>
 <li><code><a title="valolyticspy.models.match.RoundResultModel.model_config" href="#valolyticspy.models.match.RoundResultModel.model_config">model_config</a></code></li>
