@@ -98,6 +98,7 @@ class PlayerStatsDto(BaseModel):
         assists (int): The number of assists made by the player.
         playtimeMillis (int): The total playtime of the player in milliseconds.
         abilityCasts (Optional[AbilityCastsDto]): The ability casts of the player (optional).
+        vlrRating (Optional[float]): The VLR rating of the player (optional).
     &#34;&#34;&#34;
     score: int
     roundsPlayed: int
@@ -106,6 +107,7 @@ class PlayerStatsDto(BaseModel):
     assists: int
     playtimeMillis: int
     abilityCasts: Optional[AbilityCastsDto] = None
+    vlrRating: Optional[float] = None
 
 class PlayerDto(BaseModel):
     &#34;&#34;&#34;
@@ -1546,6 +1548,8 @@ validated to form a valid model.</p>
 <dd>The total playtime of the player in milliseconds.</dd>
 <dt><strong><code>abilityCasts</code></strong> :&ensp;<code>Optional[<a title="valolyticspy.dtos.riot.match.AbilityCastsDto" href="#valolyticspy.dtos.riot.match.AbilityCastsDto">AbilityCastsDto</a>]</code></dt>
 <dd>The ability casts of the player (optional).</dd>
+<dt><strong><code>vlrRating</code></strong> :&ensp;<code>Optional[float]</code></dt>
+<dd>The VLR rating of the player (optional).</dd>
 </dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
@@ -1567,6 +1571,7 @@ validated to form a valid model.</p>
         assists (int): The number of assists made by the player.
         playtimeMillis (int): The total playtime of the player in milliseconds.
         abilityCasts (Optional[AbilityCastsDto]): The ability casts of the player (optional).
+        vlrRating (Optional[float]): The VLR rating of the player (optional).
     &#34;&#34;&#34;
     score: int
     roundsPlayed: int
@@ -1574,7 +1579,8 @@ validated to form a valid model.</p>
     deaths: int
     assists: int
     playtimeMillis: int
-    abilityCasts: Optional[AbilityCastsDto] = None</code></pre>
+    abilityCasts: Optional[AbilityCastsDto] = None
+    vlrRating: Optional[float] = None</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -1619,6 +1625,10 @@ validated to form a valid model.</p>
 <div class="desc"></div>
 </dd>
 <dt id="valolyticspy.dtos.riot.match.PlayerStatsDto.score"><code class="name">var <span class="ident">score</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="valolyticspy.dtos.riot.match.PlayerStatsDto.vlrRating"><code class="name">var <span class="ident">vlrRating</span> : Optional[float]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -2143,6 +2153,7 @@ validated to form a valid model.</p>
 <li><code><a title="valolyticspy.dtos.riot.match.PlayerStatsDto.playtimeMillis" href="#valolyticspy.dtos.riot.match.PlayerStatsDto.playtimeMillis">playtimeMillis</a></code></li>
 <li><code><a title="valolyticspy.dtos.riot.match.PlayerStatsDto.roundsPlayed" href="#valolyticspy.dtos.riot.match.PlayerStatsDto.roundsPlayed">roundsPlayed</a></code></li>
 <li><code><a title="valolyticspy.dtos.riot.match.PlayerStatsDto.score" href="#valolyticspy.dtos.riot.match.PlayerStatsDto.score">score</a></code></li>
+<li><code><a title="valolyticspy.dtos.riot.match.PlayerStatsDto.vlrRating" href="#valolyticspy.dtos.riot.match.PlayerStatsDto.vlrRating">vlrRating</a></code></li>
 </ul>
 </li>
 <li>
